@@ -150,13 +150,13 @@ header .cart {
 }
 
 .logo__link {
-  display                 : grid;
-  grid-template-columns   : auto auto;
-  grid-column-gap         : clamp(10px, 3vw, 20px);
-  align-items             : center;
-  justify-content         : left;
-  color                   : var(--color-red);
-  font-weight             : bold;
+  display              : grid;
+  grid-template-columns: auto auto;
+  grid-column-gap      : clamp(10px, 3vw, 20px);
+  align-items          : center;
+  justify-content      : left;
+  color                : var(--color-red);
+  font-weight          : bold;
 }
 
 .logo img {
@@ -172,7 +172,7 @@ header .cart {
 @media (max-width: 930px) {
   .header_right {
     grid-template-rows   : 1fr;
-     grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -184,7 +184,7 @@ header .cart {
 /* === CART === */
 .header__cart {
   position    : relative;
-  margin-right: 60px;
+  margin-right: 80px;
 }
 
 .header__cart-icon {
@@ -423,13 +423,13 @@ footer {
 }
 
 .cart-item {
-  display                 : grid;
-  grid-template-columns   : 1fr 126px 0.5fr 34px;
-  align-items             : center;
-  padding                 : 8px;
-  border-bottom           : 1px solid #ddd;
-  gap                     : 15px;
-  background              : #f4f4f4;
+  display              : grid;
+  grid-template-columns: 1fr 126px 0.5fr 34px;
+  align-items          : center;
+  padding              : 8px;
+  border-bottom        : 1px solid #ddd;
+  gap                  : 15px;
+  background           : #f4f4f4;
 }
 
 .cart-thumb {
@@ -465,6 +465,7 @@ footer {
 }
 
 @media (max-width: 450px) {
+
   .ci-row:nth-child(1),
   .ci-row:nth-child(2) {
     grid-column: 1 / 5;
@@ -1039,8 +1040,8 @@ textarea.error {
   }
 
   .header_right {
-    grid-template-rows: inherit;
-    grid-template-columns: inherit; 
+    grid-template-rows   : inherit;
+    grid-template-columns: inherit;
   }
 
   header {
@@ -1086,13 +1087,41 @@ textarea.error {
   }
 
   .menu.show {
-    transform           : translateX(0);
-    z-index             : 21;
-      }
+    transform: translateX(0);
+    z-index  : 21;
+  }
 }
-@media (max-width: 450px){
-   header .logo {
+
+@media (max-width: 450px) {
+  header .logo {
     flex: 0 0 170px;
   }
 }
-/*  END 1093/25 */
+
+/* === ФІКСОВАНИЙ HEADER при малих екранах (до 700px) === */
+@media (max-width: 700px) {
+  header {
+    position       : fixed;
+    top            : 0;
+    left           : 0;
+    width          : 100%;
+    z-index        : 9;
+    background     : rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(6px);
+  }
+
+  main {
+    padding-top: 70px;
+  }
+
+  #burger {
+    position: fixed;
+  }
+
+  .menu.show {
+    position: fixed;
+  }
+
+}
+
+/*  END === 11123 === */
