@@ -1090,4 +1090,9 @@ textarea.error {
     z-index             : 21;
       }
 }
+@media (max-width: 450px){
+   header .logo {
+    flex: 0 0 170px;
+  }
+}
 /*  END 1093/25 */
