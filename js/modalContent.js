@@ -18,7 +18,7 @@ function openProductModal(id) {
           <h2>${item.name}</h2>
           <p class="modal-short">${item.content}</p>
           <div class="modal-footer">
-            <span class="modal-price">${item.price} грн</span>
+            <span class="price">${item.price} грн</span>
             <button class="btn-buy" data-id="${item.goods_id}" data-name="${escapeQuotes(item.name)}" data-price="${item.price}"></button>
           </div>
         </div>

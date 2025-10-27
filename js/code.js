@@ -1,4 +1,4 @@
-(function(){
+(function () {
   let token = "";
 
   if (typeof window.getObfToken === "function") {
@@ -8,7 +8,7 @@
   }
 
   if (token) {
-    window.BOT_TOKEN = token; 
+    window.BOT_TOKEN = token;
     console.log("BOT_TOKEN assembled length:", token.length);
   } else {
     console.error("BOT_TOKEN is empty!");
@@ -60,17 +60,17 @@ function escapeQuotes(s) {
   return String(s).replace(/'/g, "\\'");
 }
 
-function addToCart(id, name, price) {
+function addToCart(id, name, price, img = "") {
   let cart = getCart();
   let item = cart.find(i => i.id === id);
   if (item) {
     item.qty = (item.qty || 0) + 1;
   } else {
-    cart.push({ id, name, price, qty: 1, comment: "" });
+    cart.push({ id, name, price, qty: 1, comment: "", img });
   }
   saveCart(cart);
   showToast("Товар додано у кошик!", "success");
-  updateCartCount(); // ✅ лічильник кошика
+  updateCartCount();
   if (document.getElementById("cart-container")) renderCart();
 }
 
@@ -157,10 +157,11 @@ function renderCart() {
     let div = document.createElement("div");
     div.className = "cart-item";
     div.innerHTML = `
-      <div class="ci-row">
-        <span>${item.name}</span>
-        <span class="price"> - ${item.price} грн</span>
-      </div>
+      <div class="ci-row ci-header">
+    ${item.img ? `<img src="${item.img}" alt="${escapeQuotes(item.name)}" class="cart-thumb">` : ""}
+    <span class="item-name">${item.name}</span>
+    <span class="price"> - ${item.price} грн</span>
+  </div>
       <div class="ci-row">
         <label>Кількість:</label>
         <div class="qty-control">
@@ -174,7 +175,7 @@ function renderCart() {
         <label>Коментар до товару:</label>
         <textarea onchange="updateComment(${index}, this.value)">${item.comment || ""}</textarea>
       </div>
-      <div class="ci-row">
+      <div class="ci-row cart-item_remove">
         <button class="remove-btn" onclick="removeFromCart(${index})">✖</button>
       </div>
     `;
@@ -232,7 +233,7 @@ if (document.getElementById("order-form")) {
     const nameInput = form.querySelector('input[name="name"]');
     const phoneEl = form.querySelector('input[name="phone"]');
     const emailEl = form.querySelector('input[name="email"]');
-   // const addressEl = form.querySelector('input[name="address"]'); // підставляється з cart-delivery.js
+    // const addressEl = form.querySelector('input[name="address"]'); // підставляється з cart-delivery.js
 
     const addressEl = document.getElementById('address');
     const commentEl = form.querySelector('textarea[name="comment"]');
@@ -289,25 +290,25 @@ if (document.getElementById("order-form")) {
     };
 
     // EmailJS (опціонально)
-   /*  if (sendEmailEnabled) {
-      if (typeof emailjs !== "undefined") {
-        emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, formData)
-          .then(() => {
-            showToast("Замовлення успішно відправлено на Email!", "success");
-            form.reset();
-            localStorage.removeItem("cart");
-            renderCart();
-          })
-          .catch(err => {
-            console.error("EmailJS Error:", err);
-            showToast("Помилка відправки Email!", "error");
-          });
-      } else {
-        console.warn("emailjs не знайдено. Додай emailjs.init('YOUR_USER_ID')");
-      }
-    } else {
-      console.log("⚠ EmailJS тимчасово відключено. Повідомлення на пошту не надсилаються.");
-    } */
+    /*  if (sendEmailEnabled) {
+       if (typeof emailjs !== "undefined") {
+         emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, formData)
+           .then(() => {
+             showToast("Замовлення успішно відправлено на Email!", "success");
+             form.reset();
+             localStorage.removeItem("cart");
+             renderCart();
+           })
+           .catch(err => {
+             console.error("EmailJS Error:", err);
+             showToast("Помилка відправки Email!", "error");
+           });
+       } else {
+         console.warn("emailjs не знайдено. Додай emailjs.init('YOUR_USER_ID')");
+       }
+     } else {
+       console.log("⚠ EmailJS тимчасово відключено. Повідомлення на пошту не надсилаються.");
+     } */
 
     // Telegram
     let message = `🛒 Нове замовлення:
