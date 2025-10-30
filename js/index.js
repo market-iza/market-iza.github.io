@@ -106,18 +106,26 @@ function getSortedGoods(data, criteria) {
   const sorted = [...data];
   switch (criteria) {
     case "new":
-      sorted.sort((a, b) => new Date(b.date) - new Date(a.date)); break;
+      sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+      break;
     case "priceAsc":
-      sorted.sort((a, b) => a.price - b.price); break;
+      sorted.sort((a, b) => a.price - b.price);
+      break;
     case "priceDesc":
-      sorted.sort((a, b) => b.price - a.price); break;
+      sorted.sort((a, b) => b.price - a.price);
+      break;
     case "name":
-      sorted.sort((a, b) => a.name.localeCompare(b.name, "uk")); break;
+      sorted.sort((a, b) => a.name.localeCompare(b.name, "uk"));
+      break;
+    // 🔸 Додаємо сортування за рейтингом як варіант "default"
+    case "default":
     default:
+      sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
       break;
   }
   return sorted;
 }
+
 
 // ===== Автоматичне визначення кількості товарів на сторінці =====
 function calculateItemsPerPage() {
