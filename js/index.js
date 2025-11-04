@@ -1,5 +1,3 @@
-// ======== index.js ========
-
 // === Глобальні змінні ===
 let goodsData = [];
 let currentSort = localStorage.getItem("sortOption") || "default";
@@ -16,6 +14,16 @@ const paginationContainer = document.createElement("div");
 paginationContainer.className = "pagination";
 container?.after(paginationContainer); // вставляємо після товарів
 
+// 🔧 Універсальна функція нормалізації тексту
+function normalize(s = "") {
+  return String(s)
+    .replace(/&nbsp;/gi, " ")   // HTML нерозривні пробіли
+    .replace(/\u00A0/g, " ")    // реальні нерозривні пробіли
+    .replace(/\s+/g, " ")       // кілька пробілів -> один
+    .trim()
+    .toLowerCase();
+}
+
 // ===== Завантаження товарів =====
 if (container) {
   fetch("goods.json")
@@ -30,11 +38,26 @@ if (container) {
 
 // ===== Основна функція рендеру =====
 function renderFilteredAndSortedGoods() {
-  const filtered = goodsData.filter(item =>
-    item.name.toLowerCase().includes(searchQuery) ||
-    item.content.toLowerCase().includes(searchQuery)
-  );
+  const q = searchQuery;
+  const qNoSpaces = q.replace(/\s+/g, ""); // 🔹 версія без пробілів
 
+  const filtered = goodsData.filter(item => {
+    const name = normalize(item.name);
+    const content = normalize(item.content);
+    const description = normalize(item.description || "");
+    const combined = `${name} ${content} ${description}`;
+
+    // 🔸 також створюємо версію без пробілів для порівняння
+    const combinedNoSpaces = combined.replace(/\s+/g, "");
+
+    // 🔍 знаходимо або з пробілами, або без
+    return (
+      !q ||
+      combined.includes(q) ||
+      combinedNoSpaces.includes(qNoSpaces)
+    );
+  });
+  
   const sorted = getSortedGoods(filtered, currentSort);
 
   // 🔹 Динамічний перерахунок кількості товарів
@@ -125,7 +148,6 @@ function getSortedGoods(data, criteria) {
   }
   return sorted;
 }
-
 
 // ===== Автоматичне визначення кількості товарів на сторінці =====
 function calculateItemsPerPage() {
@@ -235,7 +257,8 @@ if (sortSelect) {
 // ===== Пошук у реальному часі =====
 if (searchInput) {
   searchInput.addEventListener("input", () => {
-    searchQuery = searchInput.value.trim().toLowerCase();
+    // нормалізуємо введення користувача
+    searchQuery = normalize(searchInput.value);
     renderFilteredAndSortedGoods();
   });
 }
