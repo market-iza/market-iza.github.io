@@ -19,7 +19,11 @@ function openProductModal(id) {
           <p class="modal-short">${item.content}</p>
           <div class="modal-footer">
             <span class="price">${item.price} грн</span>
-            <button class="btn-buy" data-id="${item.goods_id}" data-name="${escapeQuotes(item.name)}" data-price="${item.price}"></button>
+            <button class="btn-buy"
+              data-id="${item.goods_id}"
+              data-name="${escapeQuotes(item.name)}" 
+              data-price="${item.price}">
+            </button>
           </div>
         </div>
       </div>
@@ -52,7 +56,7 @@ function openProductModal(id) {
       const id = parseInt(buyButton.dataset.id);
       const name = buyButton.dataset.name;
       const price = parseFloat(buyButton.dataset.price);
-      addToCart(id, name, price);
+      addToCart(id, name, price, item.images);
     });
   }
 

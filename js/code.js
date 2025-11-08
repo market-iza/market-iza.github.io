@@ -289,27 +289,6 @@ if (document.getElementById("order-form")) {
       total: total
     };
 
-    // EmailJS (опціонально)
-    /*  if (sendEmailEnabled) {
-       if (typeof emailjs !== "undefined") {
-         emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, formData)
-           .then(() => {
-             showToast("Замовлення успішно відправлено на Email!", "success");
-             form.reset();
-             localStorage.removeItem("cart");
-             renderCart();
-           })
-           .catch(err => {
-             console.error("EmailJS Error:", err);
-             showToast("Помилка відправки Email!", "error");
-           });
-       } else {
-         console.warn("emailjs не знайдено. Додай emailjs.init('YOUR_USER_ID')");
-       }
-     } else {
-       console.log("⚠ EmailJS тимчасово відключено. Повідомлення на пошту не надсилаються.");
-     } */
-
     // Telegram
     let message = `🛒 Нове замовлення:
 👤 Ім'я: ${formData.name}

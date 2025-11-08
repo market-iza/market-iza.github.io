@@ -76,11 +76,7 @@ function renderGoods(data) {
       <p class="goods_content">${item.content}</p>
       <div class="good_price" data-id="${item.goods_id}">
         <p class="price">${item.price} грн</p>
-        <button class="btn-buy" 
-                data-id="${item.goods_id}" 
-                data-name="${escapeQuotes(item.name)}" 
-                data-price="${item.price}">
-        </button>
+        <button class="btn-buy" data-id="${item.goods_id}" data-name="${escapeQuotes(item.name)}" data-price="${item.price}"></button>
       </div>
     `;
 
@@ -125,7 +121,6 @@ function getSortedGoods(data, criteria) {
   }
   return sorted;
 }
-
 
 // ===== Автоматичне визначення кількості товарів на сторінці =====
 function calculateItemsPerPage() {
