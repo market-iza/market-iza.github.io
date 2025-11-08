@@ -227,8 +227,19 @@ nav {
   padding    : 10px;
   color      : #fff;
   line-height: 1.6;
+  background     : rgba(0, 0, 0, .5);
 }
-
+.main_note{
+  color: var(--color-red);
+}
+.main_info{
+  background-color: #110800;
+}
+hr {
+  border: none;
+  border-top: 1px dotted;
+  margin: 10px 0px;
+}
 main {
   background: rgba(0, 0, 0, .5);
 }
