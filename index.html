@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Market-Iza</title>
+  <link rel="icon" type="image/png" href="path/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="path/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="path/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="path/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="path/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="logo">
+        <a class="logo__link" href="index.html">
+          <img src="path/logo-market-iza_300.png" alt="logotype" />
+          <h1>Маркет Іза</h1>
+        </a>
+      </div>
+      <div class="site-title">Магазин спецій та приправ</div>
+      <div class="header_right">
+        <div class="header_info">
+          <div class="contacts">
+            <p>Графік: 9:00 - 17:00</p>
+            <a class="phone_mobile" href="tel:+380932955907">📞 +38 093 295 59 07</a>
+          </div>
+          <span class="header__cart">
+            <a href="cart.html" title="Кошик">
+              <span class="header__cart-icon"></span>
+            </a>
+            <i id="cart-count" class="header__basket"></i>
+          </span>
+        </div>
+        <input type="text" id="search-input" placeholder="Пошук товарів..." />
+      </div>
+    </header>
+    <!-- Бургер -->
+    <div class="menu-btn" id="burger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    <!-- Overlay (затемнення фону) -->
+    <div class="overlay" id="overlay"></div>
+
+    <nav class="menu" id="menu">
+      <a href="index.html">Головна</a>
+      <a href="contact.html">Контакти</a>
+      <a href="cart.html">Кошик</a>
+    </nav>
+    <main>
+      <div class="controls">
+        <h2>Каталог товарів</h2>
+        <select id="sort-select">
+          <option value="default">За рейтингом</option>
+          <option value="new">Новинки</option>
+          <option value="priceAsc">Від дешевих до дорогих</option>
+          <option value="priceDesc">Від дорогих до дешевих</option>
+          <option value="name">За назвою</option>
+        </select>
+      </div>
+      <div id="goods-container" class="goods-grid"></div>
+    </main>
+
+    <footer>&copy; 2025, Market-Iza <a id="audit" href="redaction.html">red</a></footer>
+  </div>
+  <script src="js/code.js"></script>
+  <script src="js/modalContent.js"></script>
+  <script src="js/index.js"></script>
+
+  <!-- Модальне вікно товару -->
+  <div id="product-modal" class="modal">
+    <div class="modal-content"></div>
+  </div>
+
+  <script src="js/backtotop.js"></script>
+  <script src="js/audit.js"></script>
+
+  <script src="js/index-mini.js"></script>
+</body>
+
+</html>

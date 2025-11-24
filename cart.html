@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кошик - Market-Iza</title>
+  <link rel="icon" type="image/png" href="path/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="path/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="path/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="path/favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="path/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="logo">
+        <a class="logo__link" href="index.html">
+          <img src="path/logo-market-iza_300.png" alt="logotype" />
+          <h1>Маркет Іза</h1>
+        </a>
+      </div>
+      <div class="site-title">Магазин спецій та приправ</div>
+      <div class="contacts">
+        <p>Графік: 9:00 - 17:00</p>
+        <a class="phone_mobile" href="tel:+380932955907">📞 +38 093 295 59 07</a>
+      </div>
+      <span class="header__cart">
+        <a href="cart.html" title="Кошик">
+          <span class="header__cart-icon"></span>
+        </a>
+        <i id="cart-count" class="header__basket"></i>
+      </span>
+    </header>
+ <!-- Бургер -->
+ <div class="menu-btn" id="burger">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</div>
+<!-- Overlay (затемнення фону) -->
+<div class="overlay" id="overlay"></div>
+
+  <nav class="menu" id="menu">
+      <a href="index.html">Головна</a>
+      <a href="contact.html">Контакти</a>
+      <a href="cart.html">Кошик</a>
+    </nav>
+
+    <main>
+      <h2>Ваш кошик</h2>
+      <div id="cart-container"></div>
+      <div id="order-section" class="hidden">
+        <h3>Оформлення замовлення</h3>
+        <form id="order-form">
+          <label>Прізвище Ім’я:</label>
+          <input type="text" name="name" required><br>
+
+          <label>Телефон:</label>
+          <input type="text" name="phone" required><br>
+
+          <label>Email:</label>
+          <input type="email" name="email"><br>
+
+          <label>Доставка:</label>
+
+          <div class="radio-button">
+            <div class="radio-button_nova">
+              <input type="radio" value="deliveryNewPost" id="deliveryNewPost" name="postDelivery" checked>
+              <label class="delivery-radio" for="deliveryNewPost">Нова Пошта (на відділення)</label>
+            </div>
+            <div class="radio-button_another">
+              <input type="radio" value="anotherPost" id="anotherPost" name="postDelivery">
+              <label class="delivery-radio" for="anotherPost">Інше поштове відділення</label>
+            </div>
+          </div>
+
+          <div class="nova-post hidden" id="nova-post-section">
+            <label for="search">Обрати місто або населений пункт:</label>
+            <input type="text" name="search" id="search" class="form-control" placeholder="Пошук..." autocomplete="off">
+            <ul class="search-results" id="search-results"></ul>
+
+            <label for="Description">Адреса (№ відділення або адреса доставки):</label>
+            <select class="form-control" name="Description" id="Description" autocomplete="off">
+              <option value="">Виберіть відділення</option>
+            </select>
+          </div>
+
+          <div class="address-input" id="address-wrapper">
+            <label for="address" id="address-label">Адреса:</label>
+            <input type="text" id="address" name="address">
+          </div>
+
+          <label>Коментар:</label>
+          <textarea name="comment"></textarea><br>
+          <button type="submit">Відправити замовлення</button>
+
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      &copy; 2025, Market-Iza
+    </footer>
+  </div>
+  <script src="js/code.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/cart-delivery.js"></script>
+  
+  <script src="js/backtotop.js"></script>
+  <script src="js/index-mini.js"></script> 
+</body>
+
+</html>
